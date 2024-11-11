@@ -1,10 +1,19 @@
 import streamlit as st
-from langchain.document_loaders import WebBaseLoader
+from langchain_community.document_loaders import WebBaseLoader
 
 
 from chain import Chain
 from portfolio import Portfolio
 from utils import clean_text
+from langchain.globals import set_verbose, get_verbose
+
+# Example usage
+set_verbose(True)  # or False, depending on your needs
+
+
+import os
+os.environ['USER_AGENT'] = "AI-PART1/1.0"
+
 
 
 def create_streamlit_app(llm, portfolio, clean_text):
@@ -32,3 +41,4 @@ if __name__ == "__main__":
     portfolio = Portfolio()
     st.set_page_config(layout="wide", page_title="Vardaan Email Generator", page_icon="📧")
     create_streamlit_app(chain, portfolio, clean_text)
+
